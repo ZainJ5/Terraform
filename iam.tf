@@ -24,7 +24,7 @@ resource "aws_iam_group_policy_attachment" "developer_access" {
 
 resource "aws_iam_group_policy_attachment" "qa_access" {
   group      = aws_iam_group.qa.name
-  policy_arn = "arn:aws:iam::aws:policy/ViewOnlyAccess"
+  policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
 
 # 3. Create the Users

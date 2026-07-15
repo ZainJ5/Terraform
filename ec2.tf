@@ -19,12 +19,10 @@ resource "aws_instance" "app_servers" {
   for_each = toset(local.environments)
 
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro" # Free tier eligible
+  instance_type = "t3.micro" # <-- Changed from t2.micro
 
-  # Attach the firewall rules we created in network.tf
   vpc_security_group_ids = [aws_security_group.web_ssh_access.id]
 
-  # Tag the server so we know which one is which in the AWS Console
   tags = {
     Name        = "App-Server-${title(each.key)}"
     Environment = each.key
